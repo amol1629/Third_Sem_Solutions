@@ -1,0 +1,15 @@
+import pandas as pd
+
+df = pd.read_csv('null.csv')
+
+df.isna()
+
+df['ST_NUM'] = df['ST_NUM'].fillna(149);
+
+df['ST_NAME'] = df['ST_NAME'].fillna('Default')
+
+df['NUM_BED'] = df['NUM_BED'].fillna(4)
+
+df['OWN_OCCUPIED'] = df['OWN_OCCUPIED'].fillna('N')
+
+df.isna()

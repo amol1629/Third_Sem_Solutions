@@ -1,0 +1,11 @@
+import pandas as pd
+
+df = pd.read_csv('category_data.csv')
+
+df1 = pd.get_dummies(df['Gender'])
+
+df = pd.concat([df, df1], axis = 1).reindex(df.index)
+
+df.drop('Gender', axis = 1, inplace = True)
+
+df

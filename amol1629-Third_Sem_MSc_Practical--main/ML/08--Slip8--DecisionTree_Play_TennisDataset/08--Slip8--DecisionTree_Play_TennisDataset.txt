@@ -1,0 +1,35 @@
+import pandas as pd
+
+from sklearn.preprocessing import LabelEncoder
+
+from sklearn.model_selection import train_test_split
+
+from sklearn.naive_bayes import GaussianNB
+
+df = pd.read_csv('play_tennis.csv')
+
+le = LabelEncoder()
+
+df['outlook'] = le.fit_transform(df['outlook'])
+
+df['temp'] = le.fit_transform(df['temp'])
+
+df['humidity'] = le.fit_transform(df['humidity'])
+
+df['wind'] = le.fit_transform(df['wind'])
+
+df['play'] = le.fit_transform(df['play'])
+
+x = df[['outlook', 'temp', 'humidity', 'wind']]
+
+y = df['play']
+
+xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size = 0.2)
+
+model = GaussianNB()
+
+model.fit(xtrain, ytrain)
+
+pre = model.predict(xtest)
+
+print(pre)
